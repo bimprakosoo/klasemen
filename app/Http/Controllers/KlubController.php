@@ -17,11 +17,6 @@ class KlubController extends Controller
       return view('klub', compact('klub'));
     }
 
-    public function create()
-    {
-        //
-    }
-
     public function store(Request $request)
     {
       $attributes = request()->validate([
@@ -36,23 +31,4 @@ class KlubController extends Controller
       return redirect()->back()->with('success', 'Klub berhasil ditambahkan.');
     }
 
-    public function show(string $id)
-    {
-        //
-    }
-
-    public function edit(string $id)
-    {
-        //
-    }
-
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    public function destroy(string $id)
-    {
-        //
-    }
 }

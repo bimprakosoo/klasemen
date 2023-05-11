@@ -15,12 +15,7 @@ class SkorController extends Controller
       $klub = Klub::all();
       return view('skor', compact('klub'));
     }
-
-    public function create()
-    {
-        //
-    }
-  
+    
   public function store(Request $request)
   {
     $validatedData = $request->validate([
@@ -75,7 +70,7 @@ class SkorController extends Controller
     
     $klubCount = $request->input('klubCount') - 1;
     
-    // Loop through the klub inputs
+    // looping berdasarkan total klub
     for ($i = 1; $i <= $klubCount; $i += 2) {
       $pertandingan = Skor::max('pertandingan') + 1;
   
@@ -84,21 +79,21 @@ class SkorController extends Controller
       $skor1Index = 'skor_klub' . $i;
       $skor2Index = 'skor_klub' . ($i + 1);
       
-      // Create skor for klub1
+      // cetak skor untuk klub 1
       $skor1 = new Skor();
       $skor1->pertandingan = $pertandingan;
       $skor1->klub_id = $request->input($klub1Index);
       $skor1->skor = $request->input($skor1Index);
       $skor1->save();
-      
-      // Create skor for klub2
+  
+      // cetak skor untuk klub 2
       $skor2 = new Skor();
       $skor2->pertandingan = $pertandingan;
       $skor2->klub_id = $request->input($klub2Index);
       $skor2->skor = $request->input($skor2Index);
       $skor2->save();
       
-      // Calculate points based on skor
+      // menghitung point berdasarkan skor
       $klub1Points = 0;
       $klub2Points = 0;
       
@@ -122,26 +117,4 @@ class SkorController extends Controller
     
     return redirect()->back()->with('success', 'Skor berhasil disimpan.');
   }
-  
-  
-  
-  public function show(string $id)
-    {
-        //
-    }
-
-    public function edit(string $id)
-    {
-        //
-    }
-
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    public function destroy(string $id)
-    {
-        //
-    }
 }
