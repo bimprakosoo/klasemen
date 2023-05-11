@@ -84,7 +84,15 @@
                     </tr>
                     </thead>
                     <tbody>
-
+                    @php($no = 1)
+                    @foreach ($klub as $row)
+                      <tr>
+                        <td class="text-center"><p class="text-xs font-weight-bold mb-0">{{ $no++ }}</p></td>
+                        <td class="text-center"><p class="text-xs font-weight-bold mb-0">{{ $row->name }}</p></td>
+                        <td class="text-center"><p class="text-xs font-weight-bold mb-0">{{ $row->kota_klub }}</p></td>
+                        <td class="text-center"><p class="text-xs font-weight-bold mb-0">{{ $row->point }}</p></td>
+                      </tr>
+                    @endforeach
                     </tbody>
                   </table>
                 </div>
