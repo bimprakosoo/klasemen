@@ -7,6 +7,7 @@ use App\Http\Controllers\KlubController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\SkorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,9 @@ Route::group(['middleware' => 'auth'], function () {
   })->name('tables');
   
   Route::resource('klub', KlubController::class);
+  
+  Route::resource('skor', SkorController::class);
+  Route::post('multiple-skor', [SkorController::class, 'multiple_store']);
   
   Route::get('/logout', [SessionsController::class, 'destroy']);
   Route::get('/user-profile', [InfoUserController::class, 'create']);
